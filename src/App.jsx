@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  let count = useState(5)
+  let [count, setCount] = useState(0) // `useState` set initial value
 
   function updateCount() {
-    count++
+    setCount(count + 1)
     console.log(count)
   }
 

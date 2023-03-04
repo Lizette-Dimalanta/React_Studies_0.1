@@ -52,29 +52,41 @@ If only a single/simple statement is needed:
 - Allows us to "hook into" a certain parts of the react framework and utilise it into the code
   - Hook into the `state` mechanism
 
-### Adding `useState`:
+### Adding `useState`
 
-```jsx
-// Add { useState }
-import React, { useState } from 'react'
+- Can be any datatype (even an object)
+- Call `useState` for any variable you **need** to be "reactive"
+- `useState` returns an array
 
-const App = () => {
-  let count = useState()
+#### a. Importing `useState`
 
+  ```jsx
+  // { useState } is in brackets as it's not a default export (must be destructured)
+
+  import React, { useState } from 'react'
+  ```
+
+#### b. Setting `useState`
+
+  ```jsx
+  const App = () => {   // ↓ useState(initial value)
+    let [count, setCount]  = useState({foo: bar})
+
+  // let [current value of state (read only), setter function used to update the state]
+  // AKA ["getter", "setter"]
+  ```
+
+#### c. Create Setter Function
+
+  ```jsx
   function updateCount() {
-    count++
-    console.log(count)
+    setCount(count + 1) // Setter function
+    // console.log(count)
   }
+  ```
 
-  return (
-    <>
-      <h1>State</h1>
-      <p>You have clicked {count} times!</p>
-      <button onClick={updateCount}>Click Me!</button>
-    </>
-  )
-}
+#### c. **ALTERNATIVE**: Setting Inline Setter Function
 
-export default App
-// OUTPUT = Array [ undefined (current value of state),dispatchSetState() (function used to update the state) ]
-```
+  ```jsx
+  <button onClick={() => setCount(count + 1)}>Click Me!</button>
+  ```
