@@ -68,11 +68,15 @@ If only a single/simple statement is needed:
 
 #### b. Setting `useState`
 
+- Can call `useState` for every variable needed to be "reactive".
+- Returns an array
+
   ```jsx
-  const App = () => {   // ↓ useState(initial value)
-    let [count, setCount]  = useState({foo: bar})
+  const App = () => {   // ↓ useState(set initial value)
+    let [count, setCount]  = useState(0)
 
   // let [current value of state (read only), setter function used to update the state]
+
   // AKA ["getter", "setter"]
   ```
 
@@ -85,8 +89,38 @@ If only a single/simple statement is needed:
   }
   ```
 
-#### c. **ALTERNATIVE**: Setting Inline Setter Function
+#### d. **ALTERNATIVE**: Setting Inline Setter Function
 
   ```jsx
   <button onClick={() => setCount(count + 1)}>Click Me!</button>
+  ```
+
+#### e. **Modularisation**: Updating a global variable
+
+- You can incapsulate JS into a component, but not components itself.
+
+  ```jsx
+  import React, { useState } from 'react'
+
+  // ↓ 1. Add prop: {value}
+  const ShowCount = ({ value=0 }) => {
+    // ↓ 3. Rerenders component (reactive update)
+    return <p>You have clicked {value} times!</p>
+  }
+
+  const App = () => {
+    let [count, setCount] = useState(0) // 2. `useState` triggered = updates setCount (+1)
+
+    return (
+      <>
+        <h1>State</h1>
+    // ↓ 4. Returns `ShowCount`
+        <ShowCount value={count}/>
+    // ↓ 2. Event listener: Button clicked, calls setter function (setCount)
+        <button onClick={() => setCount(count + 1)}>Click Me!</button>
+      </>
+    )
+  }
+
+  export default App
   ```
