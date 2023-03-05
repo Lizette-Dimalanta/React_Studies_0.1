@@ -12,7 +12,7 @@
     - [c. Setting `useState`](#c-setting-usestate)
     - [d. Create Setter Function](#d-create-setter-function)
     - [e. **ALTERNATIVE**: Setting Inline Setter Function](#e-alternative-setting-inline-setter-function)
-    - [e. **Modularisation**: Updating a global variable](#e-modularisation-updating-a-global-variable)
+    - [f. **Modularisation**: Updating a global variable](#f-modularisation-updating-a-global-variable)
   - [Updating Components using Third-Party Data](#updating-components-using-third-party-data)
     - [`main.jsx`: Render top-level component](#mainjsx-render-top-level-component)
     - [`BitcoinIndex.jsx`: Set Up Scaffolding](#bitcoinindexjsx-set-up-scaffolding)
@@ -111,7 +111,7 @@ If only a single/simple statement is needed:
   <button onClick={() => setCount(count + 1)}>Click Me!</button>
   ```
 
-### e. **Modularisation**: Updating a global variable
+### f. **Modularisation**: Updating a global variable
 
 - You can incapsulate JS into a component, but not components itself.
 
