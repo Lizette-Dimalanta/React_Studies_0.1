@@ -5,7 +5,7 @@ const ShowCount = ({ value=0 }) => { // 1. Add prop: {value}
 }
 
 const App = () => {
-  let [count, setCount] = useState(0) // 2. `useState` triggered = updates setCount (+1)
+  let [count, setCount] = useState(1) // 2. `useState` triggered = updates setCount (+1)
 
   return (
     <>

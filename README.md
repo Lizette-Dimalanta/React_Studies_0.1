@@ -102,25 +102,62 @@ If only a single/simple statement is needed:
   ```jsx
   import React, { useState } from 'react'
 
-  // ↓ 1. Add prop: {value}
-  const ShowCount = ({ value=0 }) => {
-    // ↓ 3. Rerenders component (reactive update)
-    return <p>You have clicked {value} times!</p>
+  const ShowCount = ({ value=0 }) => {              // 1. Add prop: {value}
+    return <p>You have clicked {value} times!</p>   // 3. Rerenders component (reactive update)
   }
 
   const App = () => {
-    let [count, setCount] = useState(0) // 2. `useState` triggered = updates setCount (+1)
+    let [count, setCount] = useState(0)             // 2. `useState` triggered = updates setCount (+1)
 
     return (
       <>
         <h1>State</h1>
-    // ↓ 4. Returns `ShowCount`
-        <ShowCount value={count}/>
-    // ↓ 2. Event listener: Button clicked, calls setter function (setCount)
+        <ShowCount value={count}/>                  // 4. Returns `ShowCount`
         <button onClick={() => setCount(count + 1)}>Click Me!</button>
+        // 2. ↑ EVENT LISTENER: Button clicked, calls setter function (setCount)
       </>
     )
   }
 
   export default App
   ```
+
+## Updating Components using Third-Party Data
+
+**Example:** Using [CoinDesk API (AUD)](https://api.coindesk.com/v1/bpi/currentprice/AUD.json)
+
+### `main.jsx`: Render top-level component
+
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import BitcoinIndex from './BitcoinIndex' // Add Component
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BitcoinIndex /> // Add Component
+  </React.StrictMode>
+)
+```
+
+### `BitcoinIndex.jsx`: Set Up Scaffolding
+
+```jsx
+import React, { useState } from 'react'
+
+const BitcoinIndex = () => {
+let [price, setPrice] = useState(0)
+
+  return (
+    <>
+        <h1>Bitcoin Index</h1>
+        <h3>Current Price: AUD {price}</h3>
+    </>
+  )
+}
+
+export default BitcoinIndex
+```
+
+### Fetch API Data and Update
