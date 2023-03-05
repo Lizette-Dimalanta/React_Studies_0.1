@@ -2,6 +2,22 @@
 
 ## Table of Contents
 
+- [React Studies (Part 2)](#react-studies-part-2)
+  - [Table of Contents](#table-of-contents)
+  - [State](#state)
+  - [Attaching Event Handler to React Component](#attaching-event-handler-to-react-component)
+  - [Triggering a Rerender: `Hook` and `useState`](#triggering-a-rerender-hook-and-usestate)
+    - [a. Adding `useState`](#a-adding-usestate)
+      - [b. Importing `useState`](#b-importing-usestate)
+      - [c. Setting `useState`](#c-setting-usestate)
+      - [d. Create Setter Function](#d-create-setter-function)
+      - [e. **ALTERNATIVE**: Setting Inline Setter Function](#e-alternative-setting-inline-setter-function)
+      - [e. **Modularisation**: Updating a global variable](#e-modularisation-updating-a-global-variable)
+  - [Updating Components using Third-Party Data](#updating-components-using-third-party-data)
+    - [`main.jsx`: Render top-level component](#mainjsx-render-top-level-component)
+    - [`BitcoinIndex.jsx`: Set Up Scaffolding](#bitcoinindexjsx-set-up-scaffolding)
+    - [Fetch API Data and Update](#fetch-api-data-and-update)
+
 ## State
 
 `def` - State: The collective term for all of the data that the app is storing/tracking at a given point in time.
@@ -52,13 +68,13 @@ If only a single/simple statement is needed:
 - Allows us to "hook into" a certain parts of the react framework and utilise it into the code
   - Hook into the `state` mechanism
 
-### Adding `useState`
+### a. Adding `useState`
 
 - Can be any datatype (even an object)
 - Call `useState` for any variable you **need** to be "reactive"
 - `useState` returns an array
 
-#### a. Importing `useState`
+#### b. Importing `useState`
 
   ```jsx
   // { useState } is in brackets as it's not a default export (must be destructured)
@@ -66,7 +82,7 @@ If only a single/simple statement is needed:
   import React, { useState } from 'react'
   ```
 
-#### b. Setting `useState`
+#### c. Setting `useState`
 
 - Can call `useState` for every variable needed to be "reactive".
 - Returns an array
@@ -80,7 +96,7 @@ If only a single/simple statement is needed:
   // AKA ["getter", "setter"]
   ```
 
-#### c. Create Setter Function
+#### d. Create Setter Function
 
   ```jsx
   function updateCount() {
@@ -89,7 +105,7 @@ If only a single/simple statement is needed:
   }
   ```
 
-#### d. **ALTERNATIVE**: Setting Inline Setter Function
+#### e. **ALTERNATIVE**: Setting Inline Setter Function
 
   ```jsx
   <button onClick={() => setCount(count + 1)}>Click Me!</button>
