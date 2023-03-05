@@ -8,15 +8,15 @@
   - [Attaching Event Handler to React Component](#attaching-event-handler-to-react-component)
   - [Triggering a Rerender: `Hook` and `useState`](#triggering-a-rerender-hook-and-usestate)
     - [a. Adding `useState`](#a-adding-usestate)
-      - [b. Importing `useState`](#b-importing-usestate)
-      - [c. Setting `useState`](#c-setting-usestate)
-      - [d. Create Setter Function](#d-create-setter-function)
-      - [e. **ALTERNATIVE**: Setting Inline Setter Function](#e-alternative-setting-inline-setter-function)
-      - [e. **Modularisation**: Updating a global variable](#e-modularisation-updating-a-global-variable)
+    - [b. Importing `useState`](#b-importing-usestate)
+    - [c. Setting `useState`](#c-setting-usestate)
+    - [d. Create Setter Function](#d-create-setter-function)
+    - [e. **ALTERNATIVE**: Setting Inline Setter Function](#e-alternative-setting-inline-setter-function)
+    - [e. **Modularisation**: Updating a global variable](#e-modularisation-updating-a-global-variable)
   - [Updating Components using Third-Party Data](#updating-components-using-third-party-data)
     - [`main.jsx`: Render top-level component](#mainjsx-render-top-level-component)
     - [`BitcoinIndex.jsx`: Set Up Scaffolding](#bitcoinindexjsx-set-up-scaffolding)
-    - [Fetch API Data and Update](#fetch-api-data-and-update)
+    - [Fetch API Data and Update App](#fetch-api-data-and-update-app)
 
 ## State
 
@@ -74,7 +74,7 @@ If only a single/simple statement is needed:
 - Call `useState` for any variable you **need** to be "reactive"
 - `useState` returns an array
 
-#### b. Importing `useState`
+### b. Importing `useState`
 
   ```jsx
   // { useState } is in brackets as it's not a default export (must be destructured)
@@ -82,7 +82,7 @@ If only a single/simple statement is needed:
   import React, { useState } from 'react'
   ```
 
-#### c. Setting `useState`
+### c. Setting `useState`
 
 - Can call `useState` for every variable needed to be "reactive".
 - Returns an array
@@ -96,7 +96,7 @@ If only a single/simple statement is needed:
   // AKA ["getter", "setter"]
   ```
 
-#### d. Create Setter Function
+### d. Create Setter Function
 
   ```jsx
   function updateCount() {
@@ -105,13 +105,13 @@ If only a single/simple statement is needed:
   }
   ```
 
-#### e. **ALTERNATIVE**: Setting Inline Setter Function
+### e. **ALTERNATIVE**: Setting Inline Setter Function
 
   ```jsx
   <button onClick={() => setCount(count + 1)}>Click Me!</button>
   ```
 
-#### e. **Modularisation**: Updating a global variable
+### e. **Modularisation**: Updating a global variable
 
 - You can incapsulate JS into a component, but not components itself.
 
@@ -176,4 +176,4 @@ let [price, setPrice] = useState(0)
 export default BitcoinIndex
 ```
 
-### Fetch API Data and Update
+### Fetch API Data and Update App
