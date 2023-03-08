@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const BitcoinIndex = () => {
 let [price, setPrice] = useState(0)
+
+  useEffect(() => console.log('useEffect triggered'))
 
   fetch ('https://api.coindesk.com/v1/bpi/currentprice/AUD.json')
     .then(response => response.json()) // Returns a promise (JSX)

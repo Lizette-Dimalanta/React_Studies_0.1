@@ -21,6 +21,10 @@
       - [`BitcoinIndex.jsx`: Specifying Data to Fetch](#bitcoinindexjsx-specifying-data-to-fetch)
       - [`BitcoinIndex.jsx`: Turning `Price` into a Conditional Render/Ternary (Loading)](#bitcoinindexjsx-turning-price-into-a-conditional-renderternary-loading)
   - [React Lifecycle](#react-lifecycle)
+    - [Render Phase / Mounting Cycle](#render-phase--mounting-cycle)
+    - [Update Cycle](#update-cycle)
+    - [Commit Phase](#commit-phase)
+    - [`useEffect()`](#useeffect)
 
 ## State
 
@@ -223,3 +227,50 @@ fetch ('https://api.coindesk.com/v1/bpi/currentprice/AUD.json')
 
 ## React Lifecycle
 
+**Perspective of a component:**
+
+- A component as a 'lifecycle', and can change state during its lifecycle.
+- `Hook`: Anything that connects/interacts with any part of the component's lifecycle.
+
+1. An instance is created.
+2. Will go through various states until component is destroyed.
+
+- Split into three phases:
+  - Render Phase
+  - Commit Phase
+  - Cleanup Phase
+
+![React Hooks Lifecycle](images/5fae96d6-a1e5-43bc-8556-4ab9d83d4ff2.jpeg)
+
+### Render Phase / Mounting Cycle
+
+- Beginning of the life of a component
+- `Mounting`: An instance of the component is created in memory, which is then attached to the virtual DOM (React's internal DOM).
+
+1. Constructor Function is executed
+2. `useMemo()`: A hook (optional)
+3. Returns JSX for rendering
+
+### Update Cycle
+
+- If `useState()`, `useReducer()` or `useContext()` or a property is defined, and that state changes = update is triggered.
+- If an update is triggered, it will go to the "Commit Phase".
+
+### Commit Phase
+
+1. React updates DOM and its references (reactive updates)
+2. If `useEffect()` or `useLayoutEffect()` is defined, it will then be called.
+3. React cleans up effects.
+
+*Component is not destroyed, it will wait at the end until another update is triggered.
+
+### `useEffect()`
+
+- A function/hook that is called after every update (unless specifed)
+- Accepts a callback.
+- Recommended to restrict every time it is called.
+
+```jsx
+useEffect(() => console.log('useEffect triggered'))
+// Called after every update
+```
