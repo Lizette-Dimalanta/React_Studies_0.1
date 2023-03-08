@@ -17,6 +17,10 @@
     - [`main.jsx`: Render top-level component](#mainjsx-render-top-level-component)
     - [`BitcoinIndex.jsx`: Set Up Scaffolding](#bitcoinindexjsx-set-up-scaffolding)
     - [Fetch API Data and Update App](#fetch-api-data-and-update-app)
+      - [`BitcoinIndex.jsx`: Adding Fetch API](#bitcoinindexjsx-adding-fetch-api)
+      - [`BitcoinIndex.jsx`: Specifying Data to Fetch](#bitcoinindexjsx-specifying-data-to-fetch)
+      - [`BitcoinIndex.jsx`: Turning `Price` into a Conditional Render/Ternary (Loading)](#bitcoinindexjsx-turning-price-into-a-conditional-renderternary-loading)
+  - [React Lifecycle](#react-lifecycle)
 
 ## State
 
@@ -177,3 +181,45 @@ export default BitcoinIndex
 ```
 
 ### Fetch API Data and Update App
+
+- You can `inspect` in the browser to view JSON (a more visual representation)
+- Asynchronous
+
+#### `BitcoinIndex.jsx`: Adding Fetch API
+
+```jsx
+const BitcoinIndex = () => {
+let [price, setPrice] = useState(0)
+
+  fetch ('https://api.coindesk.com/v1/bpi/currentprice/AUD.json')
+    .then(response => response.json()) // Returns a promise (JSX)
+    .then(data => console.log(data())) // Check if correct data is retrieved
+
+  return (
+    <>
+        <h1>Bitcoin Index</h1>
+        {<h3>Current Price: AUD {price}</h3>}
+    </>
+  )
+}
+```
+
+#### `BitcoinIndex.jsx`: Specifying Data to Fetch
+
+```jsx
+fetch ('https://api.coindesk.com/v1/bpi/currentprice/AUD.json')
+  .then(response => response.json()) // Returns a promise (JSX)
+  .then(data => setPrice(data.bpi.AUD.rate_float)) 
+  // Retrieves specified data + updates `setPrice`
+```
+
+#### `BitcoinIndex.jsx`: Turning `Price` into a Conditional Render/Ternary (Loading)
+
+```jsx
+// If price is greater than 0, update `price`
+{price > 0 ? <h3>Current Price: AUD {price}</h3> : <h3>Loading...</h3>}
+// If unable to check = comment out fetch component and test again
+```
+
+## React Lifecycle
+

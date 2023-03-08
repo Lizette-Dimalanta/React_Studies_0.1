@@ -10,9 +10,7 @@ const App = () => {
   return (
     <>
       <h1>State</h1>
-      // ↓ 3. Returns `ShowCount`
       <ShowCount value={count}/>
-      // ↓ 2. Event listener: Button clicked, calls setter function (setCount)
       <button onClick={() => setCount(count + 1)}>Click Me!</button>
     </>
   )
